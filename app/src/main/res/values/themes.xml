@@ -22,4 +22,8 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
+
+    <color name="my_green">#12C700</color>
+    <color name="my_red">#E54304</color>
+    <color name="my_yellow">#FFC107</color>
 </resources>

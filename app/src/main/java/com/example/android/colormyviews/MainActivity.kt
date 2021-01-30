@@ -4,21 +4,27 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.android.colormyviews.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setListeners()
     }
 
     private fun setListeners() {
-        val clickableViews: List<View> = listOf(box_one_text, box_two_text, box_three_text,
-                                                box_four_text, box_five_text)
-
-        for (item in clickableViews) {
-            item.setOnClickListener{makeColored(it)}
+        binding.apply {
+            val clickableViews: List<View> = listOf(boxOneText, boxTwoText, boxThreeText,
+                                                    boxFourText, boxFiveText, redButton,
+                                                    yellowButton, greenButton)
+            for (item in clickableViews) {
+                item.setOnClickListener{makeColored(it)}
+            }
         }
     }
 
@@ -33,6 +39,11 @@ class MainActivity : AppCompatActivity() {
             R.id.box_three_text -> view.setBackgroundResource(android.R.color.holo_green_light)
             R.id.box_four_text -> view.setBackgroundResource(android.R.color.holo_green_dark)
             R.id.box_five_text -> view.setBackgroundResource(android.R.color.holo_green_light)
+
+            // Boxes using custom colors for background
+            R.id.red_button -> binding.boxThreeText.setBackgroundResource(R.color.my_red)
+            R.id.yellow_button -> binding.boxFourText.setBackgroundResource(R.color.my_yellow)
+            R.id.green_button -> binding.boxFiveText.setBackgroundResource(R.color.my_green)
 
             else -> view.setBackgroundColor(Color.LTGRAY)
         }
